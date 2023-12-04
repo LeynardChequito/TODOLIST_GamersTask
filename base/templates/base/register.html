@@ -110,4 +110,28 @@
     </div>
 </div>
 
+<script>
+    // Inside a script tag in your HTML template
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/your-endpoint/', true);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.setRequestHeader('X-CSRFToken', getCSRFToken());  // Make sure to get the CSRF token
+    xhr.onload = function () {
+        if (xhr.status >= 200 && xhr.status < 300) {
+            // Handle success
+            console.log(xhr.responseText);
+        } else {
+            // Handle error
+            console.error(xhr.statusText);
+        }
+    };
+    xhr.onerror = function () {
+        // Handle network errors
+        console.error('Network error');
+    };
+    xhr.send(JSON.stringify({
+        // Your data here
+    }));
+</script>
+
 {% endblock content %}
